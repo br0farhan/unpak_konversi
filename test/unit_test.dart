@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:unpak_konversi/logic/controllers/symbol_controller.dart';
 import 'package:unpak_konversi/logic/services/base_services.dart';
 
 void main() {
@@ -14,8 +15,17 @@ void main() {
   });
 
   test("time series", () async {
-    var result = await BaseServices.timeSeries();
+    var result = await BaseServices.timeSeries(base: "eur");
 
-    print(result.rates.first.toJson());
+    for (var element in result.rates) {
+      print(element.toJson());
+    }
+  });
+
+  test("prediction", () async {
+    var predicted = await SymbolController()
+        .prediction(from: "usd", to: "idr", predicateInDays: 2);
+
+    print(predicted.toStringAsFixed(0));
   });
 }

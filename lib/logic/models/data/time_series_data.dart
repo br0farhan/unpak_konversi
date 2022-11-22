@@ -64,7 +64,7 @@ class TimeSeriesSymbols {
   TimeSeriesSymbols({required this.symbol, required this.price});
 
   static TimeSeriesSymbols fromJson(Map<String, dynamic> json) {
-    return TimeSeriesSymbols(symbol: json.keys.first, price: json.values.first);
+    return TimeSeriesSymbols(symbol: json.keys.first, price: double.parse(json.values.first.toString()));
   }
 
   Map<String, dynamic> toJson() {
